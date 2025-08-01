@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/size_config.dart';
 import '../bloc/blog_item_cubit.dart';
 import '../bloc/blog_item_state.dart';
-
 
 class BlogListView extends StatelessWidget {
   const BlogListView({super.key});
@@ -21,40 +21,52 @@ class BlogListView extends StatelessWidget {
         }
 
         return SizedBox(
-          height: 200,
+          height: SizeConfig.getProportionalHeight(200),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: state.blogs.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 16),
+            separatorBuilder: (_, __) =>
+                SizedBox(width: SizeConfig.getProportionalWidth(16)),
             itemBuilder: (context, index) {
               final blog = state.blogs[index];
+              final width = SizeConfig.getProportionalWidth(300);
+              final height = SizeConfig.getProportionalHeight(200);
+
               return Stack(
                 alignment: Alignment.bottomLeft,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(
+                      SizeConfig.getProportionalWidth(16),
+                    ),
                     child: Image.network(
                       blog.imageUri,
-                      width: 300,
-                      height: 200,
+                      width: width,
+                      height: height,
                       fit: BoxFit.cover,
                     ),
                   ),
                   Container(
-                    width: 300,
-                    padding: const EdgeInsets.all(12),
+                    width: width,
+                    padding: EdgeInsets.all(
+                      SizeConfig.getProportionalWidth(12),
+                    ),
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(
+                          SizeConfig.getProportionalWidth(16),
+                        ),
+                        bottomRight: Radius.circular(
+                          SizeConfig.getProportionalWidth(16),
+                        ),
                       ),
                       color: Colors.black.withOpacity(0.5),
                     ),
                     child: Text(
                       blog.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: SizeConfig.getProportionalWidth(16),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

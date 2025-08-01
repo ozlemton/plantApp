@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/size_config.dart';
 import '../bloc/plant_category_cubit.dart';
 import '../bloc/plant_category_state.dart';
-
 
 class CategoryListView extends StatelessWidget {
   const CategoryListView({super.key});
@@ -21,22 +21,29 @@ class CategoryListView extends StatelessWidget {
         return GridView.builder(
           padding: EdgeInsets.zero,
           itemCount: state.categories.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
             childAspectRatio: 1,
+            crossAxisSpacing: SizeConfig.getProportionalWidth(16),
+            mainAxisSpacing: SizeConfig.getProportionalHeight(16),
           ),
           itemBuilder: (context, index) {
             final category = state.categories[index];
             return Container(
               decoration: BoxDecoration(
                 color: const Color(0xFFF4F6F6),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0x2929BB89), width: 0.5),
+                borderRadius: BorderRadius.circular(
+                  SizeConfig.getProportionalWidth(16),
+                ),
+                border: Border.all(
+                  color: const Color(0x2929BB89),
+                  width: SizeConfig.getProportionalWidth(0.5),
+                ),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(
+                  SizeConfig.getProportionalWidth(16),
+                ),
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -46,22 +53,18 @@ class CategoryListView extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: 12,
-                      left: 12,
+                      top: SizeConfig.getProportionalHeight(12),
+                      left: SizeConfig.getProportionalWidth(12),
                       child: SizedBox(
-                        width: 85,
+                        width: SizeConfig.getProportionalWidth(85),
                         child: Text(
                           category.title,
                           style: TextStyle(
-                            fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
-                            // Medium
                             fontStyle: FontStyle.normal,
-                            fontSize: 16,
+                            fontSize: SizeConfig.getProportionalWidth(16),
                             height: 1.3125,
-                            // 21px / 16px
-                            letterSpacing: 0.0,
-                            color: Color(0xFF13231B),
+                            color: const Color(0xFF13231B),
                           ),
                         ),
                       ),

@@ -32,29 +32,30 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
+            // Ana içerik
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: Image.asset(
                     'assets/images/section.png',
-                    width: 360,
-                    height: 164,
+                    width: SizeConfig.getProportionalWidth(360),
+                    height: SizeConfig.getProportionalHeight(164),
                     fit: BoxFit.cover,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 12,
-                    bottom: 12,
-                    left: 16,
-                    right: 16,
+                  padding: EdgeInsets.symmetric(
+                    vertical: SizeConfig.getProportionalHeight(12),
+                    horizontal: SizeConfig.getProportionalWidth(16),
                   ),
                   child: Container(
-                    width: 320,
-                    height: 64,
+                    width: SizeConfig.getProportionalWidth(320),
+                    height: SizeConfig.getProportionalHeight(64),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(
+                        SizeConfig.getProportionalWidth(12),
+                      ),
                       image: const DecorationImage(
                         image: AssetImage('assets/images/premiumBox.png'),
                         fit: BoxFit.cover,
@@ -63,13 +64,20 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: SizedBox(height: 200, child: const BlogListView()),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.getProportionalWidth(16),
+                  ),
+                  child: SizedBox(
+                    height: SizeConfig.getProportionalHeight(200),
+                    child: const BlogListView(),
+                  ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: SizeConfig.getProportionalHeight(12)),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.getProportionalWidth(16),
+                    ),
                     child: const CategoryListView(),
                   ),
                 ),
@@ -79,8 +87,8 @@ class HomeScreen extends StatelessWidget {
               left: 0,
               right: 0,
               bottom: 0,
-              child: Image(
-                image: const AssetImage('assets/images/tabBar.png'),
+              child: Image.asset(
+                'assets/images/tabBar.png',
                 width: SizeConfig.screenWidth,
                 fit: BoxFit.cover,
               ),

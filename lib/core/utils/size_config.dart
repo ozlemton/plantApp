@@ -14,12 +14,10 @@ class SizeConfig {
     orientation = _mediaQueryData.orientation;
   }
 
-  /// Örneğin: Figma width 375'e göre tasarlandıysa
   static double getProportionalWidth(double inputWidth) {
     return (inputWidth / 375.0) * screenWidth;
   }
 
-  /// Örneğin: Figma height 812'ye göre tasarlandıysa
   static double getProportionalHeight(double inputHeight) {
     return (inputHeight / 812.0) * screenHeight;
   }

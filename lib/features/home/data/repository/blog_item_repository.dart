@@ -4,6 +4,7 @@ import '../models/blog_item/blog_item_model.dart';
 
 class BlogItemRepository {
   final Dio _dio;
+
   BlogItemRepository(this._dio);
 
   Future<List<BlogItem>> fetchBlogItems() async {

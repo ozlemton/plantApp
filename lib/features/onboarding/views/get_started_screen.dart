@@ -31,37 +31,34 @@ class GetStartedScreen extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                   ),
-
                   Positioned(
                     top: SizeConfig.getProportionalHeight(40),
-                    left: 20,
-                    right: 20,
+                    left: SizeConfig.getProportionalWidth(20),
+                    right: SizeConfig.getProportionalWidth(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Welcome to PlantApp',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w400,
-                            fontSize: 28,
+                            fontSize: SizeConfig.getProportionalWidth(28),
                             height: 1.0,
-                            letterSpacing: 0.0,
-                            color: Color(0xFF13231B),
+                            color: const Color(0xFF13231B),
                           ),
                         ),
-                        SizedBox(height: 12),
+                        SizedBox(height: SizeConfig.getProportionalHeight(12)),
                         SizedBox(
-                          width: 300,
+                          width: SizeConfig.getProportionalWidth(300),
                           child: Text(
                             'Identify more than 3000+ plants and 88% accuracy.',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w400,
-                              fontSize: 16,
+                              fontSize: SizeConfig.getProportionalWidth(16),
                               height: 1.375,
-                              letterSpacing: 0.0,
-                              color: Color(0xB213231B),
+                              color: const Color(0xB213231B),
                             ),
                           ),
                         ),
@@ -71,49 +68,55 @@ class GetStartedScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 18.0),
+                padding: EdgeInsets.only(
+                  bottom: SizeConfig.getProportionalHeight(18),
+                ),
                 child: SizedBox(
-                  width: 320,
-                  height: 56,
+                  width: SizeConfig.getProportionalWidth(320),
+                  height: SizeConfig.getProportionalHeight(56),
                   child: ElevatedButton(
                     onPressed: () {
                       context.pushRoute(const Onboarding1Route());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF28AF6E),
-                      padding: const EdgeInsets.fromLTRB(16, 18, 16, 18),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.getProportionalWidth(16),
+                        vertical: SizeConfig.getProportionalHeight(18),
+                      ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(
+                          SizeConfig.getProportionalWidth(12),
+                        ),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       "Get Started",
                       style: TextStyle(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: SizeConfig.getProportionalWidth(16),
                         height: 1.5,
-                        letterSpacing: 0.0,
                         color: Colors.white,
                       ),
                     ),
                   ),
                 ),
               ),
+
               Container(
-                width: 232,
-                height: 30,
+                width: SizeConfig.getProportionalWidth(232),
+                height: SizeConfig.getProportionalHeight(30),
                 alignment: Alignment.center,
-                child: const Text(
+                child: Text(
                   'By tapping next, you are agreeing to PlantID\nTerms of Use & Privacy Policy.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w400,
-                    fontSize: 11,
+                    fontSize: SizeConfig.getProportionalWidth(11),
                     height: 1.36,
-                    letterSpacing: 0.0,
-                    color: Color(0xB2597165),
+                    color: const Color(0xB2597165),
                   ),
                 ),
               ),
