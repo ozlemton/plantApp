@@ -2,11 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:planapp/app/router/app_router.dart';
 import '../../../../core/utils/size_config.dart';
-
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:planapp/app/router/app_router.dart';
-import '../../../../core/utils/size_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @RoutePage()
 class PaywallScreen extends StatelessWidget {
@@ -33,8 +29,10 @@ class PaywallScreen extends StatelessWidget {
             top: SizeConfig.getProportionalHeight(38),
             left: SizeConfig.getProportionalWidth(316),
             child: GestureDetector(
-              onTap: () {
-                context.pushRoute(const HomeRoute());
+              onTap: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('onboarding_complete', true);
+                context.replaceRoute(const HomeRoute());
               },
               child: Container(
                 width: SizeConfig.getProportionalWidth(32),
