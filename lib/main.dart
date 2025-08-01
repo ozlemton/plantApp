@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app/app.dart';
-import 'features/home/bloc/plant_category_cubit.dart';
+import 'features/home/bloc/plant_category/plant_category_cubit.dart';
 import 'features/home/data/repository/plant_category_repository.dart';
 import 'features/onboarding/bloc/onboarding_cubit.dart';
 

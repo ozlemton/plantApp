@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../data/models/blog_item/blog_item_model.dart';
+import '../../data/models/blog_item/blog_item_model.dart';
 
 part 'blog_item_state.freezed.dart';
 

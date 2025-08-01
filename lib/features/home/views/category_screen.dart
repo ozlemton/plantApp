@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/size_config.dart';
-import '../bloc/plant_category_cubit.dart';
-import '../bloc/plant_category_state.dart';
+import '../bloc/plant_category/plant_category_cubit.dart';
+import '../bloc/plant_category/plant_category_state.dart';
 
 class CategoryListView extends StatelessWidget {
   const CategoryListView({super.key});

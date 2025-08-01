@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../data/models/plant_category/plant_category_model.dart';
+import '../../data/models/plant_category/plant_category_model.dart';
 
 part 'plant_category_state.freezed.dart';
 

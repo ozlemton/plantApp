@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/size_config.dart';
-import '../bloc/blog_item_cubit.dart';
-import '../bloc/blog_item_state.dart';
+import '../bloc/blog_item/blog_item_cubit.dart';
+import '../bloc/blog_item/blog_item_state.dart';
 
 class BlogListView extends StatelessWidget {
   const BlogListView({super.key});

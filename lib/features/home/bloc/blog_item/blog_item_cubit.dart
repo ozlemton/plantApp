@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../data/repository/blog_item_repository.dart';
+import '../../data/repository/blog_item_repository.dart';
 import 'blog_item_state.dart';
 
 class BlogItemCubit extends Cubit<BlogItemState> {
