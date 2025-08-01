@@ -13,7 +13,10 @@ class CategoryListView extends StatelessWidget {
     return BlocBuilder<PlantCategoryCubit, PlantCategoryState>(
       builder: (context, state) {
         if (state.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return SizedBox(
+            height: SizeConfig.getProportionalHeight(40),
+            child: const Center(child: CircularProgressIndicator()),
+          );
         }
         if (state.error != null) {
           return Center(child: Text('Error: ${state.error}'));
