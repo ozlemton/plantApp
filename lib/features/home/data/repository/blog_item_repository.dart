@@ -12,10 +12,18 @@ class BlogItemRepository {
       final response = await _dio.get(
         "https://dummy-api-jtg6bessta-ey.a.run.app/getQuestions",
       );
-      final List<dynamic> data = jsonDecode(response.data);
-      return data.map((e) => BlogItem.fromJson(e)).toList();
-    } catch (e, stack) {
-      return [];
+      if (response.statusCode != 200) {
+        throw Exception("Failed to fetch blog items: ${response.statusCode}");
+      }
+      final decoded = jsonDecode(response.data);
+      if (decoded is! List) {
+        throw Exception("Unexpected response format for blog items");
+      }
+      return decoded.map((e) => BlogItem.fromJson(e)).toList();
+    } on DioException catch (dioError) {
+      throw Exception("Network error: ${dioError.message}");
+    } catch (e) {
+      throw Exception("An error occurred while fetching blog items: $e");
     }
   }
 }

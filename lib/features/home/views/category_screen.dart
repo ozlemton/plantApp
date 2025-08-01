@@ -14,7 +14,7 @@ class CategoryListView extends StatelessWidget {
       builder: (context, state) {
         if (state.isLoading) {
           return SizedBox(
-            height: SizeConfig.getProportionalHeight(40),
+            height: SizeConfig.getProportionalHeight(80),
             child: const Center(child: CircularProgressIndicator()),
           );
         }

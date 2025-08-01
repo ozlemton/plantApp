@@ -12,9 +12,15 @@ class PlantCategoryRepository {
       final response = await _dio.get(
         "https://dummy-api-jtg6bessta-ey.a.run.app/getCategories",
       );
+      if (response.statusCode != 200) {
+        throw Exception("Failed to fetch categories: ${response.statusCode}");
+      }
+      final decoded = jsonDecode(response.data);
+      if (decoded is! Map<String, dynamic> || !decoded.containsKey('data')) {
+        throw Exception("Unexpected response format");
+      }
+      final List<dynamic> rawList = decoded['data'];
 
-      final Map<String, dynamic> responseData = jsonDecode(response.data);
-      final List<dynamic> rawList = responseData['data'];
       return rawList.map((e) {
         return PlantCategory(
           id: e['id'],
@@ -22,8 +28,10 @@ class PlantCategoryRepository {
           image: PlantImage(url: e['image']['url']),
         );
       }).toList();
-    } catch (e, stack) {
-      return [];
+    } on DioException catch (dioError) {
+      throw Exception("Network error: ${dioError.message}");
+    } catch (e) {
+      throw Exception("An error occurred while fetching categories: $e");
     }
   }
 }
