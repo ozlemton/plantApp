@@ -1,12 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../app/router/app_router.dart';
-import '../../../../core/utils/size_config.dart';
-
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-
 import '../../../../app/router/app_router.dart';
 import '../../../../core/utils/size_config.dart';
 
@@ -16,6 +9,9 @@ class Onboarding1Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -43,7 +39,9 @@ class Onboarding1Screen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: SizeConfig.getProportionalHeight(46),
+                    top: SizeConfig.getProportionalHeight(
+                      SizeConfig.isIOS ? 60 : 40,
+                    ),
                     left: SizeConfig.getProportionalWidth(20),
                     right: SizeConfig.getProportionalWidth(20),
                     child: SizedBox(
@@ -51,13 +49,12 @@ class Onboarding1Screen extends StatelessWidget {
                       height: SizeConfig.getProportionalHeight(66),
                       child: Text(
                         'Take a photo to identify the plant',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
+                        style: theme.textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: SizeConfig.getProportionalWidth(28),
                           height: 1,
-                          letterSpacing: -1.0,
-                          color: const Color(0xFF13231B),
+                          letterSpacing: -1,
+                          color: colorScheme.onBackground,
                         ),
                       ),
                     ),
@@ -72,7 +69,7 @@ class Onboarding1Screen extends StatelessWidget {
                     context.pushRoute(const Onboarding2Route());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF28AF6E),
+                    backgroundColor: colorScheme.primary,
                     padding: EdgeInsets.symmetric(
                       horizontal: SizeConfig.getProportionalWidth(16),
                       vertical: SizeConfig.getProportionalHeight(18),
@@ -85,17 +82,13 @@ class Onboarding1Screen extends StatelessWidget {
                   ),
                   child: Text(
                     "Continue",
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w600,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: colorScheme.onPrimary,
                       fontSize: SizeConfig.getProportionalWidth(16),
-                      height: 1.5,
-                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
-
               SizedBox(height: SizeConfig.getProportionalHeight(12)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -109,7 +102,9 @@ class Onboarding1Screen extends StatelessWidget {
                     width: SizeConfig.getProportionalWidth(isActive ? 12 : 8),
                     height: SizeConfig.getProportionalWidth(isActive ? 12 : 8),
                     decoration: BoxDecoration(
-                      color: isActive ? Colors.black : Colors.grey[400],
+                      color: isActive
+                          ? colorScheme.onBackground
+                          : colorScheme.onBackground.withOpacity(0.3),
                       shape: BoxShape.circle,
                     ),
                   );

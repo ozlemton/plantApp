@@ -10,6 +10,10 @@ class CategoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
     return BlocBuilder<PlantCategoryCubit, PlantCategoryState>(
       builder: (context, state) {
         if (state.isLoading) {
@@ -18,9 +22,16 @@ class CategoryListView extends StatelessWidget {
             child: const Center(child: CircularProgressIndicator()),
           );
         }
+
         if (state.error != null) {
-          return Center(child: Text('Error: ${state.error}'));
+          return Center(
+            child: Text(
+              'Error: ${state.error}',
+              style: textTheme.bodyMedium?.copyWith(color: colorScheme.error),
+            ),
+          );
         }
+
         return GridView.builder(
           padding: EdgeInsets.zero,
           itemCount: state.categories.length,
@@ -32,14 +43,15 @@ class CategoryListView extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             final category = state.categories[index];
+
             return Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFF4F6F6),
+                color: Color(0xFFF4F6F6),
                 borderRadius: BorderRadius.circular(
                   SizeConfig.getProportionalWidth(16),
                 ),
                 border: Border.all(
-                  color: const Color(0x2929BB89),
+                  color: Color(0x2929BB89),
                   width: SizeConfig.getProportionalWidth(0.5),
                 ),
               ),
@@ -53,6 +65,8 @@ class CategoryListView extends StatelessWidget {
                       child: Image.network(
                         category.image.url,
                         fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) =>
+                            const Center(child: Icon(Icons.broken_image)),
                       ),
                     ),
                     Positioned(
@@ -62,12 +76,11 @@ class CategoryListView extends StatelessWidget {
                         width: SizeConfig.getProportionalWidth(85),
                         child: Text(
                           category.title,
-                          style: TextStyle(
+                          style: textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontSize: SizeConfig.getProportionalWidth(16),
-                            height: 1.3125,
-                            color: const Color(0xFF13231B),
+                            color: colorScheme.onSurface,
+                            fontSize: SizeConfig.getProportionalWidth(15),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),

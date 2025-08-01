@@ -2,7 +2,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../app/router/app_router.dart';
+import '../../../../app/router/app_router.dart';
 
 @RoutePage()
 class SplashScreen extends StatelessWidget {

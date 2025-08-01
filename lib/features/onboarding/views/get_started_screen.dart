@@ -9,6 +9,9 @@ class GetStartedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -32,7 +35,9 @@ class GetStartedScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: SizeConfig.getProportionalHeight(40),
+                    top: SizeConfig.getProportionalHeight(
+                      SizeConfig.isIOS ? 60 : 40,
+                    ),
                     left: SizeConfig.getProportionalWidth(20),
                     right: SizeConfig.getProportionalWidth(20),
                     child: Column(
@@ -40,25 +45,17 @@ class GetStartedScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Welcome to PlantApp',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w400,
-                            fontSize: SizeConfig.getProportionalWidth(28),
-                            height: 1.0,
-                            color: const Color(0xFF13231B),
+                          style: theme.textTheme.headlineLarge?.copyWith(
+                            fontSize: SizeConfig.getProportionalHeight(28),
                           ),
                         ),
-                        SizedBox(height: SizeConfig.getProportionalHeight(12)),
+                        // SizedBox(height: SizeConfig.getProportionalHeight(12)),
                         SizedBox(
                           width: SizeConfig.getProportionalWidth(300),
                           child: Text(
                             'Identify more than 3000+ plants and 88% accuracy.',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w400,
-                              fontSize: SizeConfig.getProportionalWidth(16),
-                              height: 1.375,
-                              color: const Color(0xB213231B),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: colorScheme.onSecondary.withOpacity(0.7),
                             ),
                           ),
                         ),
@@ -79,7 +76,7 @@ class GetStartedScreen extends StatelessWidget {
                       context.pushRoute(const Onboarding1Route());
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF28AF6E),
+                      backgroundColor: colorScheme.primary,
                       padding: EdgeInsets.symmetric(
                         horizontal: SizeConfig.getProportionalWidth(16),
                         vertical: SizeConfig.getProportionalHeight(18),
@@ -92,18 +89,14 @@ class GetStartedScreen extends StatelessWidget {
                     ),
                     child: Text(
                       "Get Started",
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w600,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: colorScheme.onPrimary,
                         fontSize: SizeConfig.getProportionalWidth(16),
-                        height: 1.5,
-                        color: Colors.white,
                       ),
                     ),
                   ),
                 ),
               ),
-
               Container(
                 width: SizeConfig.getProportionalWidth(232),
                 height: SizeConfig.getProportionalHeight(30),
@@ -111,12 +104,10 @@ class GetStartedScreen extends StatelessWidget {
                 child: Text(
                   'By tapping next, you are agreeing to PlantID\nTerms of Use & Privacy Policy.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
+                  style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: SizeConfig.getProportionalWidth(11),
                     height: 1.36,
-                    color: const Color(0xB2597165),
+                    color: colorScheme.onSecondary.withOpacity(0.5),
                   ),
                 ),
               ),

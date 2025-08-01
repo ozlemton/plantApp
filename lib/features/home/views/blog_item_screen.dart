@@ -10,6 +10,10 @@ class BlogListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
     return BlocBuilder<BlogItemCubit, BlogItemState>(
       builder: (context, state) {
         if (state.isLoading) {
@@ -18,8 +22,14 @@ class BlogListView extends StatelessWidget {
             child: const Center(child: CircularProgressIndicator()),
           );
         }
+
         if (state.error != null) {
-          return Center(child: Text('Error: ${state.error}'));
+          return Center(
+            child: Text(
+              'Error: ${state.error}',
+              style: textTheme.bodyMedium?.copyWith(color: colorScheme.error),
+            ),
+          );
         }
 
         return SizedBox(
@@ -62,14 +72,14 @@ class BlogListView extends StatelessWidget {
                           SizeConfig.getProportionalWidth(16),
                         ),
                       ),
-                      color: Colors.black.withOpacity(0.5),
+                      color: colorScheme.scrim.withOpacity(0.5),
                     ),
                     child: Text(
                       blog.title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: SizeConfig.getProportionalWidth(16),
+                      style: textTheme.titleSmall?.copyWith(
+                        color: colorScheme.onPrimary,
                         fontWeight: FontWeight.bold,
+                        fontSize: SizeConfig.getProportionalWidth(16),
                       ),
                     ),
                   ),

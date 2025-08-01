@@ -32,53 +32,59 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Image.asset(
-                    'assets/images/section.png',
-                    width: SizeConfig.getProportionalWidth(360),
-                    height: SizeConfig.getProportionalHeight(164),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: SizeConfig.getProportionalHeight(12),
-                    horizontal: SizeConfig.getProportionalWidth(16),
-                  ),
-                  child: Container(
-                    width: SizeConfig.getProportionalWidth(320),
-                    height: SizeConfig.getProportionalHeight(64),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        SizeConfig.getProportionalWidth(12),
-                      ),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/premiumBox.png'),
+            CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: SizeConfig.isIOS ? 10 : 0),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/section.png',
+                        width: SizeConfig.getProportionalWidth(360),
+                        height: SizeConfig.getProportionalHeight(164),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.getProportionalWidth(16),
-                  ),
-                  child: SizedBox(
-                    height: SizeConfig.getProportionalHeight(200),
-                    child: const BlogListView(),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: SizeConfig.getProportionalHeight(12),
+                      horizontal: SizeConfig.getProportionalWidth(16),
+                    ),
+                    child: Container(
+                      width: SizeConfig.getProportionalWidth(320),
+                      height: SizeConfig.getProportionalHeight(64),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          SizeConfig.getProportionalWidth(12),
+                        ),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/premiumBox.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(height: SizeConfig.getProportionalHeight(12)),
-                Expanded(
+                SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: SizeConfig.getProportionalWidth(16),
                     ),
-                    child: const CategoryListView(),
+                    child: SizedBox(
+                      height: SizeConfig.getProportionalHeight(200),
+                      child: const BlogListView(),
+                    ),
                   ),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.getProportionalWidth(16),
+                    vertical: SizeConfig.getProportionalHeight(12),
+                  ),
+                  sliver: SliverFillRemaining(child: const CategoryListView()),
                 ),
               ],
             ),

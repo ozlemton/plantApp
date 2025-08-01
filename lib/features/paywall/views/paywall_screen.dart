@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:planapp/app/router/app_router.dart';
-import '../../../../core/utils/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../core/utils/size_config.dart';
 
 @RoutePage()
 class PaywallScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class PaywallScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFF101e17),
       body: Stack(
@@ -21,7 +23,7 @@ class PaywallScreen extends StatelessWidget {
             child: Image.asset(
               'assets/images/fourth.png',
               width: SizeConfig.screenWidth,
-              height: SizeConfig.getProportionalHeight(465),
+              height: SizeConfig.getProportionalHeight(450),
               fit: BoxFit.cover,
             ),
           ),
@@ -37,8 +39,8 @@ class PaywallScreen extends StatelessWidget {
               child: Container(
                 width: SizeConfig.getProportionalWidth(32),
                 height: SizeConfig.getProportionalWidth(32),
-                decoration: const BoxDecoration(
-                  color: Color(0x00000066),
+                decoration: BoxDecoration(
+                  color: theme.shadowColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -53,13 +55,13 @@ class PaywallScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: SizeConfig.getProportionalHeight(5),
+            bottom: SizeConfig.getProportionalHeight(10),
             left: 0,
             right: 0,
             child: Image.asset(
               'assets/images/content.png',
               width: SizeConfig.screenWidth,
-              height: SizeConfig.getProportionalHeight(505),
+              //  height: SizeConfig.getProportionalHeight(505),
               fit: BoxFit.cover,
             ),
           ),

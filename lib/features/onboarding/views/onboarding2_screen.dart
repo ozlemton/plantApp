@@ -4,18 +4,15 @@ import 'package:flutter/material.dart';
 import '../../../../app/router/app_router.dart';
 import '../../../../core/utils/size_config.dart';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-
-import '../../../../app/router/app_router.dart';
-import '../../../../core/utils/size_config.dart';
-
 @RoutePage()
 class Onboarding2Screen extends StatelessWidget {
   const Onboarding2Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -39,19 +36,19 @@ class Onboarding2Screen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: SizeConfig.getProportionalHeight(46),
+                    top: SizeConfig.getProportionalHeight(
+                      SizeConfig.isIOS ? 60 : 46,
+                    ),
                     left: SizeConfig.getProportionalWidth(20),
                     right: SizeConfig.getProportionalWidth(20),
                     child: Text(
                       'Get plan care guides',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
+                      style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.normal,
                         fontSize: SizeConfig.getProportionalWidth(28),
                         height: 1,
                         letterSpacing: -1.0,
-                        color: const Color(0xFF13231B),
+                        color: colorScheme.onBackground,
                       ),
                     ),
                   ),
@@ -65,7 +62,7 @@ class Onboarding2Screen extends StatelessWidget {
                     context.pushRoute(const PaywallRoute());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF28AF6E),
+                    backgroundColor: colorScheme.primary,
                     padding: EdgeInsets.symmetric(
                       horizontal: SizeConfig.getProportionalWidth(16),
                       vertical: SizeConfig.getProportionalHeight(18),
@@ -78,12 +75,11 @@ class Onboarding2Screen extends StatelessWidget {
                   ),
                   child: Text(
                     "Continue",
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
+                    style: theme.textTheme.labelLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: SizeConfig.getProportionalWidth(16),
+                      color: colorScheme.onPrimary,
                       height: 1.5,
-                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -101,7 +97,9 @@ class Onboarding2Screen extends StatelessWidget {
                     width: SizeConfig.getProportionalWidth(isActive ? 12 : 8),
                     height: SizeConfig.getProportionalWidth(isActive ? 12 : 8),
                     decoration: BoxDecoration(
-                      color: isActive ? Colors.black : Colors.grey[400],
+                      color: isActive
+                          ? colorScheme.onBackground
+                          : colorScheme.onBackground.withOpacity(0.3),
                       shape: BoxShape.circle,
                     ),
                   );
