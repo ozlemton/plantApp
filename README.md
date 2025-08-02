@@ -17,17 +17,23 @@ git clone https://github.com/ozlemton/planapp.git
 cd planapp
 ```
 
-2. Install dependencies
+2. Open the project
+```bash
+cd planapp
+```
+
+
+3. Install dependencies
 ```bash
 flutter pub get
 ```
 
-3. Generate code files
+4. Generate code files
 ```bash
 flutter packages pub run build_runner build
 ```
 
-4. Run the application
+5. Run the application
 ```bash
 flutter run
 ```
