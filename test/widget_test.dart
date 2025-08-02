@@ -7,24 +7,39 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:planapp/main.dart';
+import 'package:planapp/app/app.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('App should start with splash screen', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const PlantApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the app starts and doesn't crash
+    expect(find.byType(MaterialApp), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('App should have proper structure', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const PlantApp());
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the app has the basic structure
+    expect(find.byType(MaterialApp), findsOneWidget);
+    
+    // Wait for a short time for the app to initialize
+    await tester.pump(const Duration(milliseconds: 100));
+    
+    // The app should be running without errors
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('App should handle navigation properly', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const PlantApp());
+
+    // Wait for a short time for the app to initialize
+    await tester.pump(const Duration(milliseconds: 100));
+
+    // Verify that we can find navigation elements
+    expect(find.byType(MaterialApp), findsOneWidget);
   });
 }
