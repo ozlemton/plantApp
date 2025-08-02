@@ -13,11 +13,10 @@ A modern Flutter application for plant care and management, built with clean arc
 ### Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/ozlemton/planapp.git
-cd planapp
+git clone https://github.com/ozlemton/plantApp.git
 ```
 
-2. Open the project
+2. Open the project with editor and create a simulator or connect a real device
 ```bash
 cd planapp
 ```
